@@ -1,0 +1,2 @@
+# CompetitionRewrite2025
+A rewrite of our 2025 codebase
