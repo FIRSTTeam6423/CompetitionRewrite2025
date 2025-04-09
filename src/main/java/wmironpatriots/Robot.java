@@ -6,6 +6,8 @@
 
 package wmironpatriots;
 
+import static edu.wpi.first.units.Units.Seconds;
+
 import java.util.function.BiConsumer;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -14,10 +16,8 @@ import lib.LoggedCommandRobot;
 import monologue.Monologue;
 
 public class Robot extends LoggedCommandRobot {
-  private Command m_autonomousCommand;
-
   public Robot() {
-    super(kDefaultPeriod);
+    super(Constants.kLOOPTIME.in(Seconds));
     // logs build data to the datalog
     final String metadata = "/BuildData/";
     Monologue.log(metadata + "RuntimeType", getRuntimeType().toString());
