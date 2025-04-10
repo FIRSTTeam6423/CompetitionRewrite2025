@@ -9,14 +9,13 @@ package wmironpatriots;
 import static edu.wpi.first.units.Units.Seconds;
 import static edu.wpi.first.units.Units.Volts;
 
-import java.util.function.BiConsumer;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import java.util.function.BiConsumer;
 import lib.LoggedCommandRobot;
 import monologue.Monologue;
 
@@ -76,7 +75,7 @@ public class Robot extends LoggedCommandRobot {
     } else {
       DriverStation.silenceJoystickConnectionWarning(true);
     }
-    
+
     configureGameBehavior();
     configureBindings();
   }
