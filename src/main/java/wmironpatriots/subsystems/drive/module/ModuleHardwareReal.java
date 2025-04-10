@@ -18,8 +18,8 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
 
-import static wmironpatriots.subsystems.drive.module.Module.PIVOT_REDUCTION;
 import static wmironpatriots.subsystems.drive.module.Module.DRIVE_REDUCTION;
+import static wmironpatriots.subsystems.drive.module.Module.PIVOT_REDUCTION;
 import static wmironpatriots.subsystems.drive.module.Module.WHEEL_RADIUS_METERS;
 
 import lib.TalonFxUtil;
@@ -135,8 +135,8 @@ public class ModuleHardwareReal implements ModuleHardware {
   }
 
   @Override
-  public void setDriveVel(double velRpm) {
-    drive.setControl(velRequest.withVelocity(velRpm));
+  public void setDriveVel(double velMps) {
+    drive.setControl(velRequest.withVelocity(velMps));
   }
 
   @Override

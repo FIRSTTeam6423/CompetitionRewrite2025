@@ -18,7 +18,7 @@ public interface ModuleHardware {
       double pivotCurrentAmps,
       boolean driveFaulted,
       double drivePoseRevs,
-      double driveVelRPM,
+      double driveVelMps,
       double driveAppliedVolts,
       double driveCurrentAmps,
       double driveTorqueAmps) {}
@@ -32,7 +32,7 @@ public interface ModuleHardware {
 
   public void setDriveCurrent(double currentAmps);
 
-  public void setDriveVel(double velRPM);
+  public void setDriveVel(double velMps);
 
   public void stopMotors();
 
