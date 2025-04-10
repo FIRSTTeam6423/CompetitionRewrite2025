@@ -6,6 +6,10 @@
 
 package wmironpatriots.subsystems.drive.module;
 
+import static wmironpatriots.subsystems.drive.module.Module.DRIVE_REDUCTION;
+import static wmironpatriots.subsystems.drive.module.Module.PIVOT_REDUCTION;
+import static wmironpatriots.subsystems.drive.module.Module.WHEEL_RADIUS_METERS;
+
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionTorqueCurrentFOC;
@@ -17,11 +21,6 @@ import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
-
-import static wmironpatriots.subsystems.drive.module.Module.DRIVE_REDUCTION;
-import static wmironpatriots.subsystems.drive.module.Module.PIVOT_REDUCTION;
-import static wmironpatriots.subsystems.drive.module.Module.WHEEL_RADIUS_METERS;
-
 import lib.TalonFxUtil;
 import wmironpatriots.subsystems.drive.module.Module.ModuleCfg;
 
@@ -47,9 +46,12 @@ public class ModuleHardwareReal implements ModuleHardware {
 
     // Configure pivot motor
     pivotCfg = TalonFxUtil.getDefaultTalonCfg();
-      
+
     pivotCfg.MotorOutput.NeutralMode = NeutralModeValue.Brake;
-    pivotCfg.MotorOutput.Inverted = cfg.pivotInverted() ? InvertedValue.CounterClockwise_Positive : InvertedValue.Clockwise_Positive;
+    pivotCfg.MotorOutput.Inverted =
+        cfg.pivotInverted()
+            ? InvertedValue.CounterClockwise_Positive
+            : InvertedValue.Clockwise_Positive;
 
     pivotCfg.CurrentLimits.StatorCurrentLimit = 40.0;
     pivotCfg.CurrentLimits.StatorCurrentLimitEnable = true;
@@ -78,7 +80,9 @@ public class ModuleHardwareReal implements ModuleHardware {
 
     driveCfg.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     driveCfg.MotorOutput.Inverted =
-        cfg.driveInverted() ? InvertedValue.Clockwise_Positive : InvertedValue.CounterClockwise_Positive;
+        cfg.driveInverted()
+            ? InvertedValue.Clockwise_Positive
+            : InvertedValue.CounterClockwise_Positive;
 
     driveCfg.CurrentLimits.StatorCurrentLimit = 120.0;
     driveCfg.CurrentLimits.StatorCurrentLimitEnable = true;
@@ -86,7 +90,8 @@ public class ModuleHardwareReal implements ModuleHardware {
     driveCfg.TorqueCurrent.PeakForwardTorqueCurrent = 120.0;
     driveCfg.TorqueCurrent.PeakReverseTorqueCurrent = -120.0;
 
-    driveCfg.Feedback.SensorToMechanismRatio = DRIVE_REDUCTION / (WHEEL_RADIUS_METERS * 2 * Math.PI);
+    driveCfg.Feedback.SensorToMechanismRatio =
+        DRIVE_REDUCTION / (WHEEL_RADIUS_METERS * 2 * Math.PI);
     driveCfg.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.RotorSensor;
     driveCfg.ClosedLoopGeneral.ContinuousWrap = true;
     driveCfg.ClosedLoopRamps.TorqueClosedLoopRampPeriod = 0.02;
@@ -102,9 +107,10 @@ public class ModuleHardwareReal implements ModuleHardware {
     cancoderCfg = new CANcoderConfiguration();
 
     cancoderCfg.MagnetSensor.MagnetOffset = cfg.cancoderOffsetRevs();
-    cancoderCfg.MagnetSensor.SensorDirection = cfg.pivotInverted() 
-      ? SensorDirectionValue.CounterClockwise_Positive
-      : SensorDirectionValue.Clockwise_Positive;
+    cancoderCfg.MagnetSensor.SensorDirection =
+        cfg.pivotInverted()
+            ? SensorDirectionValue.CounterClockwise_Positive
+            : SensorDirectionValue.Clockwise_Positive;
 
     cancoder.getConfigurator().apply(cancoderCfg);
 
