@@ -24,7 +24,7 @@ public class Robot extends LoggedCommandRobot {
 
   public Robot() {
     super(Constants.LOOPTIME.in(Seconds));
-    // logs build data to the datalog
+    // logs build metadata to the datalog
     final String metadata = "/BuildData/";
     Monologue.log(metadata + "RuntimeType", getRuntimeType().toString());
     Monologue.log(metadata + "ProjectName", BuildConstants.MAVEN_NAME);
